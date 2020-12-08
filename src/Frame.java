@@ -8,8 +8,9 @@ public class Frame extends JFrame {
         setSize(width, height);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-        MandelbrotPanel mandelbrotPanel = new MandelbrotPanel();
+        Mandelbrot mandelbrotPanel = new Mandelbrot();
         add(mandelbrotPanel);
+        setTitle("Mandelbrot Set");
         addKeyListener(new KeyHandler(mandelbrotPanel));
         setVisible(true);
     }
