@@ -63,7 +63,20 @@ public class Vector2 {
         return new Vector2(a*this.getX(), a*this.getY());
     }
     public Vector2 imaginarySquare() {
-        return new Vector2(Math.pow(this.getX(), 2)-Math.pow(this.getY(), 2), 2*this.x*this.y);
+        double x = Math.pow(this.getX(), 2)-Math.pow(this.getY(), 2);
+        double y = 2*this.x*this.y;
+        return new Vector2(x, y);
+    }
+    public Vector2 imaginarySquareForCoolerMandelbrot2() {
+        double x = Math.pow(this.getX(), 2)-Math.pow(this.getY(), 2);
+        double y = x*Math.sin(this.y);
+        return new Vector2(x, y);
+    }
+
+    public Vector2 imaginarySquareForCoolerMandelbrot() {
+        double x = Math.pow(this.getX(), 2)-Math.pow(this.getY(), 2);
+        double y = Math.tan(this.x*this.y*2);
+        return new Vector2(x, y);
     }
 
     public double dotProduct(Vector2 other) {

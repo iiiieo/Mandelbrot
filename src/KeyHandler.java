@@ -9,11 +9,11 @@ public class KeyHandler implements ActionListener, KeyListener {
     private Timer timer;
     private double zoom = 0;
     private double speedY, speedX;
-    private final double SPEED = 50, ZOOM_SPEED = 80;
+    private final double SPEED = 50, ZOOM_SPEED = 3;
 
     public KeyHandler(Mandelbrot panel) {
         this.panel = panel;
-        this.timer = new Timer(3, this);
+        this.timer = new Timer(1, this);
         this.timer.start();
     }
 
@@ -59,6 +59,9 @@ public class KeyHandler implements ActionListener, KeyListener {
         }
         if (e.getKeyCode() == KeyEvent.VK_A) {
             speedX = -SPEED;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_R) {
+            panel.repaint();
         }
         if (e.getKeyCode() == KeyEvent.VK_S) {
             if((e.getModifiers() & KeyEvent.CTRL_MASK) != 0){

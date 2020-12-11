@@ -47,7 +47,7 @@ public class Mandelbrot extends JPanel implements MouseListener {
         Vector2 point = new Vector2(x, i);
         int iterations = 0;
         while(iterations < MAX_ITERATIONS){
-            point = point.imaginarySquare();
+            point = point.imaginarySquareForCoolerMandelbrot2();
             point = point.add(startingPoint);
             if(point.getY() + point.getX() > 16) {
                 break;
@@ -55,7 +55,7 @@ public class Mandelbrot extends JPanel implements MouseListener {
             iterations++;
         }
         if(iterations == MAX_ITERATIONS){
-            return 0x222222;
+            return 0x1a1a1a;
         }
         return Color.HSBtoRGB((float) iterations / MAX_ITERATIONS, COLOR_INTENSITY, 1f);
     }
@@ -91,7 +91,11 @@ public class Mandelbrot extends JPanel implements MouseListener {
 
 
     public void safeImage() {
-        String path  =chooseOutputImage();
+        String path = chooseOutputImage();
+        if(path==null){
+            System.out.println("Nothing selected");
+            return;
+        }
         if(path == null){
             System.out.println("Canceled!");
             return;
@@ -111,7 +115,7 @@ public class Mandelbrot extends JPanel implements MouseListener {
         fd.setMultipleMode(false);
         fd.setFile("mandelbrot.png");
         fd.setVisible(true);
-        return fd.getFiles()[0].getAbsolutePath();
+        return fd.getFiles().length>0?fd.getFiles()[0].getAbsolutePath():null;
     }
 
     public Offset getOffset() {
